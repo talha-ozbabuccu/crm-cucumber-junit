@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/crm/step_definitions",
         dryRun = false,
-        tags = "@employee and @admin"
+        tags = "@Regression"
 )
 public class CukesRunner {
 
