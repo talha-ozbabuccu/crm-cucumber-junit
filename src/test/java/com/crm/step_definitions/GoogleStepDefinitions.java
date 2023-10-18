@@ -24,4 +24,11 @@ public class GoogleStepDefinitions {
         Driver.closeDriver();
     }
 
+    @When("user types apple and clicks enter")
+    public void userTypesAppleAndClicksEnter() {
+    }
+
+    @Then("user sees apple in the google title")
+    public void userSeesAppleInTheGoogleTitle() {
+    }
 }
