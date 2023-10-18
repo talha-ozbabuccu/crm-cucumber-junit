@@ -1,4 +1,4 @@
-@Regression
+@Regression @smoke @login
 Feature: Library app login feature
   User Story:
   As a user, I should be able to login with correct credentials to different
@@ -15,7 +15,7 @@ Feature: Library app login feature
     And user enters librarian password
     Then user should see the dashboard
 
-  @student
+  @student @db
   Scenario: Login as student
     When user enters student username
     And user enters student password
