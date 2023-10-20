@@ -6,14 +6,14 @@ Feature: Google  search functionality
    When user is on Google search page
    Then user should see title is Google
 
-
+  @wip
  Scenario: Search functionality result title verification
    Given user is on Google search page
    When user types apple and clicks enter
    Then user sees apple in the google title
 
-  @wip
+
   Scenario: Search functionality result title verification
     Given user is on Google search page
-    When user types "tesla" and clicks enter
-    Then user sees "tesla" in the google title
+    When user types "apple" and clicks enter
+    Then user sees "apple" in the google title
