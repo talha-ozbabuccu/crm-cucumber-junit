@@ -10,6 +10,20 @@ import org.openqa.selenium.Keys;
 public class GoogleStepDefinitions {
 
     GoogleSearchPage googleSearchPage=new GoogleSearchPage();
+
+    @When("user types {string} and clicks enter")
+    public void userTypesAndClicksEnter(String searchKeyword) {
+        googleSearchPage.searchBox.sendKeys(searchKeyword+Keys.ENTER);
+    }
+
+    @Then("user sees {string} in the google title")
+    public void userSeesInTheGoogleTitle(String string) {
+        String expectedTitle= string +" - Google search";
+        String actualTitle=Driver.getDriver().getTitle();
+        //Junit assertion accepts first arg as expected, second arg as actual
+        Assert.assertEquals("Title is not as expected!",expectedTitle,actualTitle);
+        //Assert.assertTrue(actualTitle.equals(expectedTitle));
+    }
     @When("user types apple and clicks enter")
     public void userTypesAppleAndClicksEnter() {
         googleSearchPage.searchBox.sendKeys("apple"+ Keys.ENTER );
@@ -17,7 +31,7 @@ public class GoogleStepDefinitions {
 
     @Then("user sees apple in the google title")
     public void userSeesAppleInTheGoogleTitle() {
-        String expectedTitle="apple - Google Search";
+        String expectedTitle="apple";
         String actualTitle=Driver.getDriver().getTitle();
         //Junit assertion accepts first arg as expected, second arg as actual
         Assert.assertEquals("Title is not as expected!",expectedTitle,actualTitle);
@@ -39,6 +53,7 @@ public class GoogleStepDefinitions {
 
         Driver.closeDriver();
     }
+
 
 
 }
