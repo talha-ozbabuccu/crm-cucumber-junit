@@ -63,4 +63,13 @@ In this class only general utility methods that are not related to some specific
         WebDriverWait wait=new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOf(webElement));
     }
+
+    /**
+     *
+     * @param expectedInURL
+     */
+    public static void verifyURLContains(String expectedInURL){
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
+    }
+
 }
