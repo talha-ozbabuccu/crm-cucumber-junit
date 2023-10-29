@@ -1,5 +1,6 @@
 package com.crm.pages;
 
+import com.crm.utilies.ConfigurationReader;
 import com.crm.utilies.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,7 +30,7 @@ public class WebTableLoginPage {
     }
 
     /**
-     * This method will acceot two arguments and login.
+     * This method will accept two arguments and login.
      * @param username
      * @param password
      */
@@ -37,6 +38,16 @@ public class WebTableLoginPage {
         inputUsername.sendKeys(username);
         inputPassword.sendKeys(password);
         loginButton.click();
+    }
+
+    /**
+     * This method will log in using credentials from
+     * configuration.properties
+     */
+    public void loginWithConfig(){
+        inputUsername.sendKeys(ConfigurationReader.getProperty("web.table.username"));
+        inputPassword.sendKeys(ConfigurationReader.getProperty("web.table.pw"));
+
     }
 
 }

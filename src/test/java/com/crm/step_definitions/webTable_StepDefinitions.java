@@ -42,4 +42,6 @@ public class webTable_StepDefinitions {
         webTableLoginPage.inputPassword.sendKeys(pw);
         webTableLoginPage.loginButton.click();
     }
+
+
 }
