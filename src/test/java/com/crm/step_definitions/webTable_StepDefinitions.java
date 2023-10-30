@@ -30,17 +30,18 @@ public class webTable_StepDefinitions {
     public void user_clicks_to_login_button() {
         webTableLoginPage.loginButton.click();
     }
-    @Then("user shoul see url contains orders")
-    public void user_shoul_see_url_contains_orders() {
+    @Then("user should see url contains orders")
+    public void user_should_see_url_contains_orders() {
         BrowserUtils.verifyURLContains("orders");
     }
 
 
     @When("user enters username {string} password {string} and logins")
     public void userEntersUsernamePasswordAndLogins(String username, String pw) {
-        webTableLoginPage.inputUsername.sendKeys(username);
-        webTableLoginPage.inputPassword.sendKeys(pw);
-        webTableLoginPage.loginButton.click();
+//        webTableLoginPage.inputUsername.sendKeys(username);
+//        webTableLoginPage.inputPassword.sendKeys(pw);
+//        webTableLoginPage.loginButton.click();
+        webTableLoginPage.login(username, pw);
     }
 
 
