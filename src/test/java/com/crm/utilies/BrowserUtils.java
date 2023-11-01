@@ -4,9 +4,12 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -65,11 +68,24 @@ In this class only general utility methods that are not related to some specific
     }
 
     /**
-     *
+     * This method will accept a String "expectedTitle" and Asserts if it is true
      * @param expectedInURL
      */
     public static void verifyURLContains(String expectedInURL){
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
+    }
+    public static List<String>dropdownOptionsAsString(WebElement dropdownElement){
+        Select select=new Select(dropdownElement );
+        //List of all ACTUAL month <options> as a web element
+        List<WebElement> actualOptionsAsWebElement = select.getOptions();
+        //create a List of string and pass all the actual web element options' string into that new list
+
+        //List of all ACTUAL month options as a string
+        List<String>actualOptionsAsString= new ArrayList<>();
+
+        for (WebElement each : actualOptionsAsWebElement) {
+            actualOptionsAsString.add(each.getText());
+        }
     }
 
 }
