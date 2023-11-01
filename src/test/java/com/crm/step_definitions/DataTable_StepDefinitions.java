@@ -1,6 +1,7 @@
 package com.crm.step_definitions;
 
 import com.crm.pages.DropdownsPage;
+import com.crm.utilies.BrowserUtils;
 import com.crm.utilies.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,24 +24,15 @@ public class DataTable_StepDefinitions {
 
     @Given("User is on the dropdowns page of practice tool")
     public void user_is_on_the_dropdowns_page_of_practice_tool() {
-        Driver.getDriver().get("https://practice.cydeo.com/dropdown");
+        Driver.getDriver().get("https://practice.crm.com/dropdown");
     }
     @Then("User should see below info in month dropdown")
-    public void user_should_see_below_info_in_month_dropdown(List<String>expecetedMonths) {
+    public void user_should_see_below_info_in_month_dropdown(List<String>expectedMonths) {
 
-        Select select=new Select(dropdownsPage.monthDropdown);
-        //List of all month <options> as a web element
-        List<WebElement> actualOptionsAsWebElement = select.getOptions();
-        //create a List of string and pass all the actual web element options' string into that new list
+        //This method will return us the List of String of given dropdown's options
+        List<String> actualMonths = BrowserUtils.dropdownOptionsAsString(dropdownsPage.monthDropdown);
 
-        //List of all month options as a string
-        List<String>actualOptionsAsString= new ArrayList<>();
-
-        for (WebElement each : actualOptionsAsWebElement) {
-            actualOptionsAsString.add(each.getText());
-        }
-
-        Assert.assertEquals(expecetedMonths,actualOptionsAsString);
+        Assert.assertEquals(expectedMonths,actualMonths);
         //Assert will check the size ofhe lists first. If it is matching it will check content 1 by 1.
 
 

@@ -59,7 +59,7 @@ In this class only general utility methods that are not related to some specific
     }
 
     /*
-    Creating a utility method for ExplicitWait so we don't have to repeat the lines
+    Creating a utility method for ExplicitWait, so we don't have to repeat the lines
     */
     public static void waitForInvisibilityOf(WebElement webElement){
         Driver.getDriver().manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
@@ -74,7 +74,7 @@ In this class only general utility methods that are not related to some specific
     public static void verifyURLContains(String expectedInURL){
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
     }
-    public static List<String>dropdownOptionsAsString(WebElement dropdownElement){
+    public static List<String> dropdownOptionsAsString(WebElement dropdownElement){
         Select select=new Select(dropdownElement );
         //List of all ACTUAL month <options> as a web element
         List<WebElement> actualOptionsAsWebElement = select.getOptions();
@@ -86,6 +86,7 @@ In this class only general utility methods that are not related to some specific
         for (WebElement each : actualOptionsAsWebElement) {
             actualOptionsAsString.add(each.getText());
         }
+        return actualOptionsAsString;
     }
 
 }
