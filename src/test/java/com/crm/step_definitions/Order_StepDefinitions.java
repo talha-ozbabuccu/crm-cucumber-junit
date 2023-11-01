@@ -1,6 +1,9 @@
 package com.crm.step_definitions;
 
+import com.crm.pages.BasePage;
 import com.crm.pages.WebTableLoginPage;
+import com.crm.utilies.ConfigurationReader;
+import com.crm.utilies.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,9 +12,13 @@ import io.cucumber.java.en.When;
 public class Order_StepDefinitions {
 
     WebTableLoginPage webTableLoginPage=new WebTableLoginPage();
+    BasePage basePage=new BasePage();
+
     @Given("user is already logged in and on order page")
     public void user_is_already_logged_in_and_on_order_page() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("web.table.url"));
         webTableLoginPage.login();
+        basePage.order.click();
     }
 
     @When("user selects product type {string}")
