@@ -10,7 +10,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class Order_StepDefinitions {
 
@@ -40,33 +43,45 @@ public class Order_StepDefinitions {
         orderPage.inputQuantity.sendKeys(String.valueOf(quantity));
     }
 
-    @And("user enters costumer name {string}")
-    public void userEntersCostumerName(String arg0) {
-
+    @And("user enters customer name {string}")
+    public void userEntersCustomerName(String string) {
+        orderPage.inputName.sendKeys(string);
     }
 
     @And("user enters street {string}")
-    public void userEntersStreet(String arg0) {
+    public void userEntersStreet(String string) {
+        orderPage.inputStreet.sendKeys(string);
     }
 
     @And("user enters city {string}")
-    public void userEntersCity(String arg0) {
+    public void userEntersCity(String string) {
+        orderPage.inputCity.sendKeys(string);
     }
 
     @And("user enters state {string}")
-    public void userEntersState(String arg0) {
+    public void userEntersState(String string) {
+        orderPage.inputState.sendKeys(string);
     }
 
     @And("user enters zipcode {string}")
     public void userEntersZipcode(String string) {
+        orderPage.inputZip.sendKeys(string);
     }
 
     @And("user selects credit card type {string}")
-    public void userSelectsCreditCardType(String string) {
+    public void userSelectsCreditCardType(String expectedCardType) {
+        List< WebElement > cardTypes= orderPage.cardType;
+
+        for (WebElement each : cardTypes) {
+            if (each.getAttribute("value").equalsIgnoreCase(expectedCardType)){
+                each.click();
+            }
+        }
     }
 
     @And("user enters credit card number {string}")
     public void userEntersCreditCardNumber(String string) {
+
     }
 
     @And("user enters expiry date {string}")
