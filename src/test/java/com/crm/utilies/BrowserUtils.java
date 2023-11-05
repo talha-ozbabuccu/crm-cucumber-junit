@@ -89,4 +89,13 @@ In this class only general utility methods that are not related to some specific
         return actualOptionsAsString;
     }
 
+    public static void clickRadioButton(List<WebElement> radioButtons, String attributeValue){
+
+        for (WebElement each : radioButtons) {
+            if (each.getAttribute("value").equalsIgnoreCase(attributeValue)){
+                each.click();
+            }
+        }
+    }
+
 }
