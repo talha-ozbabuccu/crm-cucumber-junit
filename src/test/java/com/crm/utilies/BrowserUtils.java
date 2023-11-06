@@ -74,6 +74,12 @@ In this class only general utility methods that are not related to some specific
     public static void verifyURLContains(String expectedInURL){
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains(expectedInURL));
     }
+
+    /**
+     * This method will accept a dropdown as a WebElement
+     * @param dropdownElement
+     * @return
+     */
     public static List<String> dropdownOptionsAsString(WebElement dropdownElement){
         Select select=new Select(dropdownElement );
         //List of all ACTUAL month <options> as a web element
@@ -89,6 +95,11 @@ In this class only general utility methods that are not related to some specific
         return actualOptionsAsString;
     }
 
+    /**
+     * This method will accept a group radio buttons as a List of WebElement
+     * @param radioButtons
+     * @param attributeValue
+     */
     public static void clickRadioButton(List<WebElement> radioButtons, String attributeValue){
 
         for (WebElement each : radioButtons) {
@@ -97,5 +108,7 @@ In this class only general utility methods that are not related to some specific
             }
         }
     }
+
+
 
 }

@@ -3,6 +3,7 @@ package com.crm.step_definitions;
 import com.crm.pages.BasePage;
 import com.crm.pages.OrderPage;
 import com.crm.pages.WebTableLoginPage;
+import com.crm.utilies.BrowserUtils;
 import com.crm.utilies.ConfigurationReader;
 import com.crm.utilies.Driver;
 import io.cucumber.java.en.And;
@@ -70,13 +71,9 @@ public class Order_StepDefinitions {
 
     @And("user selects credit card type {string}")
     public void userSelectsCreditCardType(String expectedCardType) {
-        List< WebElement > cardTypes= orderPage.cardType;
+       //This line will loop through the list and decide which radio button to click
+        BrowserUtils.clickRadioButton(orderPage.cardType, expectedCardType);
 
-        for (WebElement each : cardTypes) {
-            if (each.getAttribute("value").equalsIgnoreCase(expectedCardType)){
-                each.click();
-            }
-        }
     }
 
     @And("user enters credit card number {string}")
