@@ -30,10 +30,10 @@ public class OrderPage extends BasePage {
     public List<WebElement> cardType;
 
     @FindBy(name = "cardNo")
-    public WebElement inputCard;
+    public WebElement cardNoInput;
 
     @FindBy(name = "cardExp")
-    public WebElement inputCardExp;
+        public WebElement cardExpInput;
 
     @FindBy(css = "button[type='submit']")
     public WebElement processOrderBtn;

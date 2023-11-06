@@ -2,6 +2,7 @@ package com.crm.step_definitions;
 
 import com.crm.pages.BasePage;
 import com.crm.pages.OrderPage;
+import com.crm.pages.ViewAllOrdersPage;
 import com.crm.pages.WebTableLoginPage;
 import com.crm.utilies.BrowserUtils;
 import com.crm.utilies.ConfigurationReader;
@@ -10,6 +11,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -21,6 +23,7 @@ public class Order_StepDefinitions {
     WebTableLoginPage webTableLoginPage=new WebTableLoginPage();
     BasePage basePage=new BasePage();
     OrderPage orderPage=new OrderPage();
+    ViewAllOrdersPage viewAllOrdersPage= new ViewAllOrdersPage();
 
     @Given("user is already logged in and on order page")
     public void user_is_already_logged_in_and_on_order_page() {
@@ -78,19 +81,23 @@ public class Order_StepDefinitions {
 
     @And("user enters credit card number {string}")
     public void userEntersCreditCardNumber(String string) {
-
+        orderPage.cardNoInput.sendKeys(string);
     }
 
     @And("user enters expiry date {string}")
     public void userEntersExpiryDate(String string) {
+        orderPage.cardExpInput.sendKeys(string);
     }
 
     @And("user enters process order button")
     public void userEntersProcessOrderButton() {
+        orderPage.processOrderBtn.click();
     }
 
     @Then("user should see {string} in first row of the web table")
-    public void userShouldSeeInFirstRowOfTheWebTable(String arg0) {
+    public void userShouldSeeInFirstRowOfTheWebTable(String expectedName) {
+        String actualName=viewAllOrdersPage.newCustomerCell.getText();
+        Assert.assertEquals(expectedName,actualName);
     }
 
 
