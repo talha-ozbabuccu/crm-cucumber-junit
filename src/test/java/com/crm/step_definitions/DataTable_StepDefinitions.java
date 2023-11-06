@@ -33,7 +33,7 @@ public class DataTable_StepDefinitions {
         List<String> actualMonths = BrowserUtils.dropdownOptionsAsString(dropdownsPage.monthDropdown);
 
         Assert.assertEquals(expectedMonths,actualMonths);
-        //Assert will check the size ofhe lists first. If it is matching it will check content 1 by 1.
+        //Assert will check the size of the lists first. If it is matching it will check content 1 by 1.
 
 
     }
