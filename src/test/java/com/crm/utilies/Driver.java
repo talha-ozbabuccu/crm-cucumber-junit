@@ -21,13 +21,16 @@ public class Driver {
     We make Webriver private, because we want to close access from outside the class.
     We make it static because we will use it in a static method.
      */
-    private static WebDriver driver; //Value is null by default
-    /*
-    Create a re-usable utility method which will return same driver instance when we call it
-     */
+    //private static WebDriver driver; //Value is null by default
+
+    private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
+
+
+    //Create a re-usable utility method which will return same driver instance when we call it
+
     public static WebDriver getDriver(){
 
-        if (driver==null){
+        if (driverPool.get()==null){
             /*
             We read our browserType from configuration.properties.
             This way, we can control which browser is opened from outside our code
@@ -40,31 +43,31 @@ public class Driver {
             switch (browserType){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
-                    driver=new EdgeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new EdgeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
             }
         }
-        return driver;
+        return driverPool.get();
     }
 
     public static void closeDriver(){
-        if (driver != null) {
-            driver.quit();
-            driver=null;
+        if (driverPool.get() != null) {
+            driverPool.get().quit();
+            driverPool.remove();
         }
     }
 
