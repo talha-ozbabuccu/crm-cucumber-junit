@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class OrderPage extends BasePage {
-
     public OrderPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
